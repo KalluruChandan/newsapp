@@ -1,0 +1,58 @@
+		
+	
+	•	sudo yum install java-17-amazon-corretto.x86_64
+	
+		
+
+	•	wget https://downloads.apache.org/kafka/3.5.0/kafka_2.13-3.5.0.tgz
+•	extract the downloaded tar -xvzf kafka_2.13-3.5.0.tgz
+
+	/home/ec2-user/kafka_2.13-3.5.0/Data/Kafka
+
+•	vi /home/ec2-user/kafka_2.13-3.5.0/bin/kafka-server-start.sh
+•	vi /home/ec2-user/kafka_2.13-3.5.0/config/server.properties
+•	vi /home/ec2-user/kafka_2.13-3.5.0/config/zookeeper.properties
+•	vi .bash_profile
+
+JAVA_HOME="/usr/lib/jvm/java-17-amazon-corretto.x86_64"
+PATH=$JAVA_HOME/bin:/home/ec2-user/kafka_2.13-3.5.0/bin:$PATH
+
+•	Source .bash_profile
+
+•	zookeeper-server-start.sh -daemon /home/ec2-user/kafka_2.13-3.5.0/config/zookeeper.properties
+•	kafka-server-start.sh -daemon /home/ec2-user/kafka_2.13-3.5.0/config/server.properties
+
+•	sudo vi /etc/yum.repos.d/mongodb-org-4.0.repo
+
+[mongodb-org-4.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/4.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+
+•	sudo yum -y install mongodb-org
+•	sudo vi /etc/mongod.conf
+
+•	sudo service mongod start
+•	sudo service mongod restart
+•	sudo service mongod status
+•	sudo service mongod stop
+
+
+update-alternatives --config java
+
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::movieapp-bucket/*"
+        }
+    ]
+}
